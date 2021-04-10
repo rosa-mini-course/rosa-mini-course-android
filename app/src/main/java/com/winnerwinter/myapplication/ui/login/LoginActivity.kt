@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
+        val signup = findViewById<Button>(R.id.signup)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
@@ -41,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
+            signup.isEnabled = loginState.isDataValid
 
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
@@ -98,6 +100,12 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+
+            // TODO 注册操作
+            signup.setOnClickListener {
+                loading.visibility = View.VISIBLE
+
             }
         }
     }
