@@ -3,6 +3,7 @@ package com.winnerwinter.myapplication.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.winnerwinter.myapplication.data.LoginDataSource
+import com.winnerwinter.myapplication.data.LoginDataSourceJava
 import com.winnerwinter.myapplication.data.LoginRepository
 
 /**
@@ -16,7 +17,7 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
                     loginRepository = LoginRepository(
-                            dataSource = LoginDataSource()
+                            dataSource = LoginDataSourceJava()
                     )
             ) as T
         }
