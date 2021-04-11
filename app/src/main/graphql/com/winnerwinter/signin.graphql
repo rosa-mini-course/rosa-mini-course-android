@@ -1,0 +1,12 @@
+mutation signIn(
+  $passwd: String! = "123456",
+  $mail: String! = "admin@winnerwinter.com"
+) {
+  signIn(
+    password: $passwd,
+    email: $mail
+  ) {
+    userId,
+    useremail,
+  }
+}

@@ -1,0 +1,16 @@
+mutation signUp(
+  $invCode: String! = "5201314",
+  $rol: String! = "admin",
+  $passwd: String! = "123456",
+  $mail: String! = "admin@winnerwinter.com"
+) {
+  signUp(
+    invitationCode: $invCode,
+    role: $rol,
+    password: $passwd,
+    email: $mail
+  ) {
+    userId,
+    useremail
+  }
+}
