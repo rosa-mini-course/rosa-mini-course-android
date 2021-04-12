@@ -61,6 +61,8 @@ dependencies {
     // Coroutines extensions for easier asynchronicity handling
 //    implementation("com.apollographql.apollo:apollo-coroutines-support:2.5.5")
 
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.10"
+
     implementation 'com.alibaba:fastjson:1.1.72.android'
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }
