@@ -1,0 +1,12 @@
+mutation addTeachingCourse ($courseName: String!, $courseInfo: String!){
+  addTeachingCourse(data: { coursename: $courseName, info: $courseInfo }) {
+    courseId
+    coursename
+    info
+    lecturer {
+      userId
+      role
+      useremail
+    }
+  }
+}

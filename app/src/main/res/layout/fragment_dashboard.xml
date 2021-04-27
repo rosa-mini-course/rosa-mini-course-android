@@ -7,11 +7,12 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,13 +29,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/avatar" />
-<!--                tools:src="@tools:sample/avatars" />-->
+            <!--                tools:src="@tools:sample/avatars" />-->
 
             <TextView
                 android:id="@+id/tv_useremail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="邮箱：admin@winnerwinter.com"
+                android:text="邮箱：username@domain.com"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_userId"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="ID: 1"
+                android:text="ID: 10086"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_useremail"
@@ -70,6 +71,20 @@
         app:layout_constraintGuide_percent="0.25" />
 
     <TextView
+        android:id="@+id/tv_addTeachingCourse"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="添加所教课程"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -83,4 +98,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_teaching_courses"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="在教课程"
+        android:clickable="true"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_addTeachingCourse" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

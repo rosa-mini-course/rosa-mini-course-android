@@ -36,6 +36,9 @@ android {
         jvmTarget = '1.8'
         kotlinOptions.useIR = true
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

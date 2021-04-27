@@ -20,6 +20,10 @@ class DashboardFragment : Fragment() {
     private lateinit var userManager: UserManager
     private lateinit var user: User
     private lateinit var logout_tv: TextView
+    private lateinit var useremail_tv:TextView
+    private lateinit var userId_tv: TextView
+    private lateinit var addTeachingCourse_tv: TextView
+    private lateinit var mySubscription_tv: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
@@ -37,7 +41,19 @@ class DashboardFragment : Fragment() {
         userManager = UserManager.getInstance(context)
         user = userManager.loadUser()
     }
+
     private fun initTextView(root: View) {
+        useremail_tv = root.findViewById(R.id.tv_useremail)
+        useremail_tv.text = user.useremail
+        userId_tv = root.findViewById(R.id.tv_userId)
+        userId_tv.text = user.userId
+
+        addTeachingCourse_tv = root.findViewById(R.id.tv_addTeachingCourse)
+        addTeachingCourse_tv.setOnClickListener {
+            val intent = Intent(activity, AddTeachingCourseActivity::class.java)
+            startActivity(intent)
+        }
+
         logout_tv = root.findViewById(R.id.tv_logout)
         logout_tv.setOnClickListener {
             userManager.saveUser(null)
