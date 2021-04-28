@@ -1,0 +1,11 @@
+query me {
+  me {
+    teachingCourses {
+      courseId
+      coursename
+      lecturer {
+        useremail
+      }
+    }
+  }
+}

@@ -23,6 +23,7 @@ class DashboardFragment : Fragment() {
     private lateinit var useremail_tv:TextView
     private lateinit var userId_tv: TextView
     private lateinit var addTeachingCourse_tv: TextView
+    private lateinit var browseTeachingCourse_tv: TextView
     private lateinit var mySubscription_tv: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,6 +52,12 @@ class DashboardFragment : Fragment() {
         addTeachingCourse_tv = root.findViewById(R.id.tv_addTeachingCourse)
         addTeachingCourse_tv.setOnClickListener {
             val intent = Intent(activity, AddTeachingCourseActivity::class.java)
+            startActivity(intent)
+        }
+
+        browseTeachingCourse_tv = root.findViewById(R.id.tv_browse_teaching_courses)
+        browseTeachingCourse_tv.setOnClickListener {
+            val intent = Intent(activity, BrowseTeachingCourseActivity::class.java)
             startActivity(intent)
         }
 

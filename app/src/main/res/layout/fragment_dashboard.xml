@@ -100,7 +100,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_teaching_courses"
+        android:id="@+id/tv_browse_teaching_courses"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="在教课程"
