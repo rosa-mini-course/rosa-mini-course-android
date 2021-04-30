@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
         layoutManager.orientation = RecyclerView.VERTICAL
         binding.homeFragmentRv.layoutManager = layoutManager
         binding.homeFragmentRv.setHasFixedSize(true)
-        adapter = SubscribedCourseAdapter(activityContext, itemList = itemList)
+        adapter = activity?.let { SubscribedCourseAdapter(it, activityContext, itemList = itemList) }!!
         binding.homeFragmentRv.adapter = adapter
         binding.homeFragmentRv.itemAnimator = DefaultItemAnimator()
     }
