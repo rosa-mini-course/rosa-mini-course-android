@@ -53,7 +53,6 @@ class DiscoveryAdapter(activity: FragmentActivity, activityContext: Context, ite
         holder.discoveryCourseLecturerTextView.text = lecturerEmail
         holder.discoveryInfoTextView.text = courseInfo
         holder.subscribeBtn.setOnClickListener {
-            holder.subscribeBtn.isEnabled = false
             val subscribeCourseMutation: SubscribeCourseMutation = SubscribeCourseMutation.builder()
                 .courseID(courseId)
                 .build()
