@@ -34,7 +34,7 @@ class TeachingCourseAdapter(activityContext: Context, itemList: List<List<String
         holder.teachingCourseNameTextView.text = courseName
         holder.teachingLecturerTextView.text = lecturerEmail
 
-        // TODO 点击单个课程跳转到该课程的详情页
+        // 点击单个课程跳转到该课程的详情页
         holder.itemView.setOnClickListener {
             val intent = Intent(context, TeachingCourseDetailsActivity::class.java)
             intent.putExtra("courseId", courseId)

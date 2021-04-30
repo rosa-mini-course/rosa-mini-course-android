@@ -1,0 +1,11 @@
+query loadSubscribedCourses{
+  me {
+    subscribedCourses {
+      courseId
+      coursename
+      lecturer {
+        useremail
+      }
+    }
+  }
+}

@@ -11,24 +11,20 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apollographql.apollo.ApolloCall
-import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
-import com.winnerwinter.AddTeachingCourseMutation
+import com.apollographql.apollo.exception.ApolloNetworkException
 import com.winnerwinter.MeQuery
 import com.winnerwinter.myapplication.ApolloManager
 import com.winnerwinter.myapplication.databinding.ActivityBrowseTeachingCourseBinding
-import kotlinx.coroutines.coroutineScope
-import java.lang.Exception
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class BrowseTeachingCourseActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityBrowseTeachingCourseBinding
+    private lateinit var binding: ActivityBrowseTeachingCourseBinding
     lateinit var view: View
-    lateinit var activityContext: Context
+    private lateinit var activityContext: Context
     lateinit var adapter: TeachingCourseAdapter
     val itemList = mutableListOf<List<String>>()
 
@@ -55,7 +51,7 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
         binding.teachingCourseRv.itemAnimator = DefaultItemAnimator()
     }
 
-    fun loadTeachingCourses() {
+    private fun loadTeachingCourses() {
         val apolloClient = ApolloManager.getInstance(this.baseContext)
         lifecycleScope.launchWhenResumed {
             val response = try {
@@ -74,20 +70,24 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                             }
                             if (response.hasErrors() || response.data === null) {
                                 return
+                            } else if (response.data!!.me()?.teachingCourses() == null) {
+                                return
+                            } else {
+                                for (item in response.data?.me()?.teachingCourses()!!) {
+                                    val list = mutableListOf<String>()
+                                    val courseId = item.courseId()
+                                    val courseName = item.coursename()
+                                    val lecturer = item.lecturer().useremail()
+                                    list.add(courseId)
+                                    list.add(courseName)
+                                    list.add(lecturer)
+                                    itemList.add(list)
+                                }
+                                this@BrowseTeachingCourseActivity.runOnUiThread {
+                                    adapter.notifyDataSetChanged()
+                                }
                             }
-                            for (item in response.data?.me()?.teachingCourses()!!) {
-                                var list = mutableListOf<String>()
-                                val courseId = item.courseId()
-                                val courseName = item.coursename()
-                                val lecturer = item.lecturer().useremail()
-                                list.add(courseId)
-                                list.add(courseName)
-                                list.add(lecturer)
-                                itemList.add(list)
-                            }
-                            this@BrowseTeachingCourseActivity.runOnUiThread {
-                                adapter.notifyDataSetChanged()
-                            }
+
 
                         }
 
@@ -108,6 +108,11 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                     Toast.makeText(this@BrowseTeachingCourseActivity, "加载所教课程失败", Toast.LENGTH_SHORT).show()
                 }
                 return@launchWhenResumed
+            } catch (e: ApolloNetworkException) {
+                Log.e(FAILURE, "网络出了点问题")
+                runOnUiThread {
+                    Toast.makeText(activityContext, "网络出了点问题", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
