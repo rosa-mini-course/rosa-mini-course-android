@@ -21,7 +21,7 @@ class TeachingCourseAdapter(activityContext: Context, itemList: List<List<String
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeachingCourseViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
+        val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
         val itemView: View = layoutInflater.inflate(R.layout.teaching_course_cell, parent, false)
         return TeachingCourseViewHolder(itemView)
     }

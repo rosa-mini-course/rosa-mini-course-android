@@ -1,0 +1,11 @@
+query discoveryCourses {
+  discoveryCourses {
+    courseId
+    coursename
+    lecturer {
+      userId
+      useremail
+    }
+    info
+  }
+}

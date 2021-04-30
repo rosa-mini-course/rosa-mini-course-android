@@ -58,6 +58,7 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                 apolloClient.query(MeQuery())
                     .enqueue(object :
                         ApolloCall.Callback<MeQuery.Data>() {
+
                         override fun onResponse(response: Response<MeQuery.Data>) {
                             Log.i(SUCCESS, response.toString())
                             runOnUiThread {
@@ -68,7 +69,7 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                                 ).show()
                                 // Toast.makeText(this@BrowseTeachingCourseActivity, response.data?.me()?.teachingCourses().toString(), Toast.LENGTH_SHORT).show()
                             }
-                            if (response.hasErrors() || response.data === null) {
+                            if (response.hasErrors() || response.data == null) {
                                 return
                             } else if (response.data!!.me()?.teachingCourses() == null) {
                                 return
@@ -87,8 +88,6 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                                     adapter.notifyDataSetChanged()
                                 }
                             }
-
-
                         }
 
                         override fun onFailure(e: ApolloException) {
@@ -96,14 +95,14 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                             runOnUiThread {
                                 Toast.makeText(
                                     this@BrowseTeachingCourseActivity,
-                                    "加载所教课程失败",
+                                    e.message.toString(),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
                         }
                     })
             } catch (e: ApolloException) {
-                Log.e(FAILURE, "加载所教课程失败")
+                Log.e(FAILURE, e.message, e)
                 runOnUiThread {
                     Toast.makeText(this@BrowseTeachingCourseActivity, "加载所教课程失败", Toast.LENGTH_SHORT).show()
                 }
@@ -114,7 +113,6 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
                     Toast.makeText(activityContext, "网络出了点问题", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 }

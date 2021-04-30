@@ -1,0 +1,6 @@
+mutation subscribeCourse($courseID: String!) {
+  subscribeCourse(courseId: $courseID) {
+    userId
+    courseId
+  }
+}

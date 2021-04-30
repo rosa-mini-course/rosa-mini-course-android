@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Rosaminicourse"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity"></activity>
+        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity">
+
+        </activity>
         <activity
             android:name=".ui.dashboard.BrowseTeachingCourseActivity"
             android:label="@string/title_activity_browse_teaching_course">
