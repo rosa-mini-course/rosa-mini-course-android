@@ -1,0 +1,5 @@
+mutation removeTeachingCourse($courseID: String!){
+  removeTeachingCourse (courseId: $courseID) {
+    courseId
+  }
+}

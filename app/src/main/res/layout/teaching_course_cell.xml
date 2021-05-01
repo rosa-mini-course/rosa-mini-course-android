@@ -35,8 +35,19 @@
         android:id="@+id/tv_teaching_lecturer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Lecturer Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_teaching_course_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_teaching_course_name" />
+
+    <Button
+        android:id="@+id/endup_course_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="结课"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_teaching_lecturer"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="@+id/tv_teaching_course_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

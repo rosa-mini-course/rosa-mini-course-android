@@ -46,7 +46,9 @@ class BrowseTeachingCourseActivity : AppCompatActivity() {
         layoutManager.orientation = RecyclerView.VERTICAL
         binding.teachingCourseRv.layoutManager = layoutManager
         binding.teachingCourseRv.setHasFixedSize(true)
-        adapter = TeachingCourseAdapter(activityContext, itemList)
+        adapter = TeachingCourseAdapter(activity = this@BrowseTeachingCourseActivity,
+            activityContext = activityContext, itemList = itemList
+        )
         binding.teachingCourseRv.adapter = adapter
         binding.teachingCourseRv.itemAnimator = DefaultItemAnimator()
     }
