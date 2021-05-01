@@ -59,6 +59,7 @@ class AddTeachingCourseActivity : AppCompatActivity() {
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
+                                    this@AddTeachingCourseActivity.finish()
                                 }
 
                                 override fun onFailure(e: ApolloException) {
