@@ -47,6 +47,24 @@ class SubscribedCourseAdapter(activity: FragmentActivity, activityContext: Conte
         holder.subscribedCourseName.text = courseName
         holder.subscribedCourseLecturer.text = lecturerEmail
 
+        // 点击单个课程跳转到该课程的详情页
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, SubscribedCourseDetailActivity::class.java)
+            intent.putExtra("courseId", courseId)
+            intent.putExtra("courseName", courseName)
+            intent.putExtra("lecturerEmail", lecturerEmail)
+            activity.startActivity(intent)
+        }
+
+        // 点击单个课程跳转到该课程的详情页
+        holder.subscribedCourseName.setOnClickListener {
+            val intent = Intent(context, SubscribedCourseDetailActivity::class.java)
+            intent.putExtra("courseId", courseId)
+            intent.putExtra("courseName", courseName)
+            intent.putExtra("lecturerEmail", lecturerEmail)
+            activity.startActivity(intent)
+        }
+
         holder.unsubscribeBtn.setOnClickListener {
             val apolloClient = ApolloManager.getInstance(context)
             val unsubscribeCourseMutation = UnsubscribeCourseMutation.builder().courseID(courseId).build()
@@ -99,11 +117,10 @@ class SubscribedCourseAdapter(activity: FragmentActivity, activityContext: Conte
                     Toast.makeText(context, "服务器繁忙", Toast.LENGTH_SHORT).show()
                 }
             }
+
+
         }
 
-        // TODO 点击单个课程跳转到该课程的详情页
-        holder.itemView.setOnClickListener {
-        }
     }
 
     override fun getItemCount(): Int {

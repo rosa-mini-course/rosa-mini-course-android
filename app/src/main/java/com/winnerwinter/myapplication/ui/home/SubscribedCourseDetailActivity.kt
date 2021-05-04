@@ -1,6 +1,5 @@
-package com.winnerwinter.myapplication.ui.dashboard
+package com.winnerwinter.myapplication.ui.home
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,48 +14,46 @@ import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.exception.ApolloNetworkException
 import com.winnerwinter.LoadVideosBelongToCourseQuery
 import com.winnerwinter.myapplication.ApolloManager
-import com.winnerwinter.myapplication.databinding.ActivityTeachingCourseDetailsBinding
+import com.winnerwinter.myapplication.databinding.ActivitySubscribedCourseDetailBinding
+import com.winnerwinter.myapplication.ui.dashboard.FAILURE
+import com.winnerwinter.myapplication.ui.dashboard.SUCCESS
 
-class TeachingCourseDetailsActivity : AppCompatActivity() {
-    lateinit var adapter: VideoAdapter
-    lateinit var binding: ActivityTeachingCourseDetailsBinding
+class SubscribedCourseDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySubscribedCourseDetailBinding
     private val itemList = mutableListOf<List<String>>()
-    lateinit var courseId: String
+
+    private lateinit var adapter: SubscribedVideoApater
+    private lateinit var courseId: String
+    private lateinit var courseName: String
+    private lateinit var lecturerEmail: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTeachingCourseDetailsBinding.inflate(layoutInflater)
+        binding = ActivitySubscribedCourseDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.courseIdTv.text = intent.getStringExtra("courseId")
-        binding.courseNameTv.text = intent.getStringExtra("courseName")
-        binding.courseLecturerEmail.text = intent.getStringExtra("lecturerEmail")
         courseId = intent.getStringExtra("courseId").toString()
-        loadVideosBelongToCourse()
+        courseName = intent.getStringExtra("courseName").toString()
+        lecturerEmail = intent.getStringExtra("lecturerEmail").toString()
+        binding.sbCourseIdTv.text = courseId
+        binding.sbCourseNameTv.text = courseName
+        binding.sbCourseLecturerEmail.text = lecturerEmail
+        loadVideoBelongToCourse()
         initRecyclerView()
-        initFloatingButton()
-    }
-
-    private fun initFloatingButton() {
-        binding.floatingActionButton.setOnClickListener {
-            val intent: Intent = Intent(this@TeachingCourseDetailsActivity, UploadVideoActivity::class.java)
-            intent.putExtra("courseId", courseId)
-            startActivity(intent)
-        }
     }
 
     private fun initRecyclerView() {
-        val layoutManager: LinearLayoutManager = LinearLayoutManager(this@TeachingCourseDetailsActivity)
+        val layoutManager = LinearLayoutManager(this@SubscribedCourseDetailActivity)
         layoutManager.orientation = RecyclerView.VERTICAL
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.setHasFixedSize(true)
-        adapter = VideoAdapter(this@TeachingCourseDetailsActivity, itemList)
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.itemAnimator = DefaultItemAnimator()
+        binding.sbRecyclerView.layoutManager = layoutManager
+        binding.sbRecyclerView.setHasFixedSize(true)
+        adapter = SubscribedVideoApater(this@SubscribedCourseDetailActivity, itemList)
+        binding.sbRecyclerView.adapter =adapter
+        binding.sbRecyclerView.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun loadVideosBelongToCourse() {
-        val apolloClient = ApolloManager.getInstance(this@TeachingCourseDetailsActivity)
+    private fun loadVideoBelongToCourse() {
+        val apolloClient = ApolloManager.getInstance(this@SubscribedCourseDetailActivity)
         val query = LoadVideosBelongToCourseQuery.builder().courseID(courseId).build()
         lifecycleScope.launchWhenResumed {
             try {
@@ -65,7 +62,7 @@ class TeachingCourseDetailsActivity : AppCompatActivity() {
                         override fun onResponse(response: Response<LoadVideosBelongToCourseQuery.Data>) {
                             Log.i(SUCCESS, response.toString())
                             runOnUiThread {
-                                Toast.makeText(this@TeachingCourseDetailsActivity, "加载详情成功", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@SubscribedCourseDetailActivity, "加载详情成功", Toast.LENGTH_SHORT).show()
                             }
                             if (response.hasErrors() || response.data == null) {
                                 return
@@ -74,8 +71,10 @@ class TeachingCourseDetailsActivity : AppCompatActivity() {
                                 val list = mutableListOf<String>()
                                 val videoId = item.videoId()
                                 val videoEntityName = item.title()
+                                val videoLocation = item.location()
                                 list.add(videoId)
                                 list.add(videoEntityName)
+                                list.add(videoLocation)
                                 itemList.add(list)
                             }
                             runOnUiThread {
@@ -87,7 +86,7 @@ class TeachingCourseDetailsActivity : AppCompatActivity() {
                             Log.e(FAILURE, e.message, e)
                             runOnUiThread {
                                 Toast.makeText(
-                                    this@TeachingCourseDetailsActivity,
+                                    this@SubscribedCourseDetailActivity,
                                     e.message.toString(),
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -99,8 +98,8 @@ class TeachingCourseDetailsActivity : AppCompatActivity() {
                 Log.e(FAILURE, e.message, e)
                 runOnUiThread {
                     Toast.makeText(
-                        this@TeachingCourseDetailsActivity,
-                                e.message.toString(),
+                        this@SubscribedCourseDetailActivity,
+                        e.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -108,7 +107,7 @@ class TeachingCourseDetailsActivity : AppCompatActivity() {
                 Log.e(FAILURE, e.message, e)
                 runOnUiThread {
                     Toast.makeText(
-                        this@TeachingCourseDetailsActivity,
+                        this@SubscribedCourseDetailActivity,
                         e.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()

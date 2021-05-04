@@ -10,14 +10,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.Rosaminicourse"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.dashboard.UploadVideoActivity"></activity>
-        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity"></activity>
-
+        <activity android:name=".ui.home.DisplayVideoActivity"></activity>
+        <activity android:name=".ui.home.SubscribedCourseDetailActivity" />
+        <activity android:name=".ui.dashboard.UploadVideoActivity" />
+        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity" />
         <activity
             android:name=".ui.dashboard.BrowseTeachingCourseActivity"
             android:label="@string/title_activity_browse_teaching_course">

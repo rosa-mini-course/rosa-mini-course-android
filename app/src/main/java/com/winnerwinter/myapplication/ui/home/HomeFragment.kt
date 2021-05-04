@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -47,7 +48,7 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.subscribedCourses.observe(viewLifecycleOwner, Observer {
         })
-        activityContext = requireContext()
+        activityContext = activity?.baseContext!!
         loadSubscribedCourses()
         initRecyclerView()
         return view
@@ -58,13 +59,13 @@ class HomeFragment : Fragment() {
         layoutManager.orientation = RecyclerView.VERTICAL
         binding.homeFragmentRv.layoutManager = layoutManager
         binding.homeFragmentRv.setHasFixedSize(true)
-        adapter = activity?.let { SubscribedCourseAdapter(it, activityContext, itemList = itemList) }!!
+        adapter = SubscribedCourseAdapter(requireActivity(), activityContext,itemList)
         binding.homeFragmentRv.adapter = adapter
         binding.homeFragmentRv.itemAnimator = DefaultItemAnimator()
     }
 
     private fun loadSubscribedCourses() {
-        val apolloClient = ApolloManager.getInstance(this.context)
+        val apolloClient = ApolloManager.getInstance(this.activityContext)
         lifecycleScope.launchWhenResumed {
             val response = try {
                 apolloClient.query(LoadSubscribedCoursesQuery())
