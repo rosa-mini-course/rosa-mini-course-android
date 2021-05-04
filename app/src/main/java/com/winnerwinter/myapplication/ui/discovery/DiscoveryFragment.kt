@@ -116,7 +116,6 @@ class DiscoveryFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
             }
         }
     }

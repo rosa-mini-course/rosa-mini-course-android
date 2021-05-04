@@ -1,0 +1,6 @@
+query loadVideosBelongToCourse ($courseID: String!) {
+  loadVideos(courseId: $courseID) {
+    videoId
+    title
+  }
+}

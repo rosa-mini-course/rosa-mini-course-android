@@ -1,0 +1,5 @@
+mutation RemoveVideo($videoID: String!) {
+  removeVideo(videoId: $videoID) {
+    videoId
+  }
+}

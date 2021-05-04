@@ -3,6 +3,8 @@
     package="com.winnerwinter.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,11 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.Rosaminicourse"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity">
+        <activity android:name=".ui.dashboard.UploadVideoActivity"></activity>
+        <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity"></activity>
 
-        </activity>
         <activity
             android:name=".ui.dashboard.BrowseTeachingCourseActivity"
             android:label="@string/title_activity_browse_teaching_course">
