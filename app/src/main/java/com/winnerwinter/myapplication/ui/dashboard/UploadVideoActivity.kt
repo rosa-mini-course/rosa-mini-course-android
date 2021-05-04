@@ -33,13 +33,19 @@ class UploadVideoActivity : AppCompatActivity() {
         binding.filenameTv.text = courseId
 
         binding.uploadBtn.setOnClickListener {
+            if (binding.filenameEt.text == null || binding.filenameEt.text.toString() == "") {
+                runOnUiThread {
+                    Toast.makeText(this@UploadVideoActivity, "文件名不能为空", Toast.LENGTH_SHORT).show()
+                }
+                return@setOnClickListener
+            }
             val requestBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("courseId", courseId)
                 .addFormDataPart(
                     "file",
 //                    file.name,
-                    "my.mp4",
+                    binding.filenameEt.text.toString() + ".mp4",
 //                    file.asRequestBody("video/mp4".toMediaTypeOrNull())
                     somebody
                 )
