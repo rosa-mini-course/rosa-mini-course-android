@@ -8,14 +8,14 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/avatar"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Rosaminicourse"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.home.DisplayVideoActivity"></activity>
+        <activity android:name=".ui.home.DisplayVideoActivity" />
         <activity android:name=".ui.home.SubscribedCourseDetailActivity" />
         <activity android:name=".ui.dashboard.UploadVideoActivity" />
         <activity android:name=".ui.dashboard.TeachingCourseDetailsActivity" />
@@ -32,8 +32,8 @@
         </activity>
         <activity android:name=".ui.dashboard.AddTeachingCourseActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+            android:name=".LoginActivity">
+            <!--android:label="@string/title_activity_login">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

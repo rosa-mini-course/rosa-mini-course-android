@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">rosa-mini-course</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_discovery">Discovery</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="app_name">软香红微课管理系统</string>
+    <string name="title_home">我的订阅</string>s
+    <string name="title_dashboard">控制台</string>
+    <string name="title_discovery">发现课程</string>
+    <string name="title_activity_login">登录</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
@@ -13,7 +13,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="signUpButtonText">Sign up</string>
-    <string name="title_activity_browse_teaching_course">BrowseTeachingCourseActivity</string>
+    <string name="title_activity_browse_teaching_course">在教课程</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
